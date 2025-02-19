@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import os
 
+PASSWORD = st.secrets["password"]
+
 csv_file_path = 'dados_leads.csv'
 
 def mostrar_relatorio():
