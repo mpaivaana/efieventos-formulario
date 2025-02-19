@@ -97,11 +97,30 @@ def salvar_dados_csv(dados):
             writer.writerow(colunas)
         writer.writerow(dados)
 
+def obter_agentes_comerciais():
+    agentes_comerciais = set() 
+    if os.path.isfile(csv_file_path):
+        with open(csv_file_path, mode='r', encoding='utf-8-sig') as file:
+            reader = csv.reader(file, delimiter=',')
+            next(reader)  
+            for row in reader:
+                if len(row) > 7:
+                    agente_comercial = row[0] 
+                    agentes_comerciais.add(agente_comercial)
+    return sorted(agentes_comerciais)
+
 st.image("assets/header.png", use_column_width=True)
 st.title("Registro de Leads para contato")
 
 lead = st.text_input("Insira o Lead:", value=st.session_state.get('lead', ''))
 nome_empresa = st.text_input("Insira o nome da empresa:", value=st.session_state.get('nome_empresa', ''))
+
+agentes_comerciais = obter_agentes_comerciais()
+
+agente_comercial = st.selectbox("Selecione ou insira o Agente Comercial:", ["Não possuo registro"] + agentes_comerciais)  
+
+if agente_comercial == "":  
+    agente_comercial = st.text_input("Digite o nome do Agente Comercial:", value=st.session_state.get('agente_comercial', ''))
 
 if st.button("Buscar Informações"):
     if nome_empresa:
@@ -136,8 +155,7 @@ if "informacoes" in st.session_state and st.session_state.informacoes:
     razao_social = st.text_input("Alterar Razão Social:", value=st.session_state.informacoes.get('Razão Social', ''))
     numero_cobrancas = st.text_input("(opcional) | Número de cobranças emitidas por mês:", value=st.session_state.get('numero_cobrancas', ''))
     mensagem = st.text_area("(opcional) | Mensagem:", value=st.session_state.get('mensagem', ''))
-    agente_comercial = st.text_input("Agente Comercial:", value=st.session_state.get('agente_comercial', ''))
-
+    agente_comercial = st.text_input("Agente Comercial:", value=agente_comercial)
 
     if st.button("Salvar"):
         if not novo_email or not novo_telefone or not novo_cnpj or not nome_fantasia or not razao_social or not agente_comercial:
