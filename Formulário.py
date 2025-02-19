@@ -155,7 +155,11 @@ if "informacoes" in st.session_state and st.session_state.informacoes:
     razao_social = st.text_input("Alterar Razão Social:", value=st.session_state.informacoes.get('Razão Social', ''))
     numero_cobrancas = st.text_input("(opcional) | Número de cobranças emitidas por mês:", value=st.session_state.get('numero_cobrancas', ''))
     mensagem = st.text_area("(opcional) | Mensagem:", value=st.session_state.get('mensagem', ''))
-    agente_comercial = st.text_input("Agente Comercial:", value=agente_comercial)
+    if agente_comercial == "Não possuo registro":
+        agente_comercial = st.text_input("Agente Comercial:", value="") 
+    else:
+        agente_comercial = st.text_input("Agente Comercial:", value=agente_comercial)
+    
 
     if st.button("Salvar"):
         if not novo_email or not novo_telefone or not novo_cnpj or not nome_fantasia or not razao_social or not agente_comercial:
