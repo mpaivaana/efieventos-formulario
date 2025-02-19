@@ -13,10 +13,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Carregar as chaves do secrets
-GOOGLE_API_KEY = st.secrets["google"]["api_key"]
-CX = st.secrets["google"]["cx"]
-SERPAPI_KEY = st.secrets["serpapi"]["api_key"]
+GOOGLE_API_KEY = st.secrets["google_api_key"]
+CX = st.secrets["cx"]
+SERPAPI_KEY = st.secrets["serpapi_key"]
 
 csv_file_path = 'dados_leads.csv'
 
