@@ -1,11 +1,6 @@
 import streamlit as st
 import pandas as pd
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-PASSWORD = os.getenv("PASSWORD")
 
 csv_file_path = 'dados_leads.csv'
 

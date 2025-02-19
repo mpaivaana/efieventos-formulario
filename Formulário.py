@@ -4,14 +4,7 @@ import re
 import time
 import csv
 import os
-from dotenv import load_dotenv
 from bs4 import BeautifulSoup
-
-load_dotenv()
-
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-CX = os.getenv("CX")
-SERPAPI_KEY = os.getenv("SERPAPI_KEY")
 
 st.set_page_config(
     page_title="Registro de Leads",
